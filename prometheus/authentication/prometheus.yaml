@@ -1,0 +1,30 @@
+global:
+  scrape_interval: 1m
+  scrape_timeout: 10s
+
+scrape_configs:
+    - job_name: 'nodes'
+      scrape_interval: 30s
+      scrape_timeout: 30s
+      scheme: https # default value -> http
+      tls_config:
+        ca_file: /path/to/file.crt
+        insecure_skip_verify: true
+      metrics_path: /stats/metrics #default value -> /metric
+      static_configs:
+        - targets: ['10.231.1.2.:9090', '192.168.43.9090'] # here we have 2 targets that we wanted to scrape
+        
+#configuration related to AlertManager
+alerting:
+
+
+#Rule files specifies a list of files rules are read from
+
+rule_files:
+
+#Settings related to the remote read/write feature.
+remote_read:
+remote_write:
+
+#Storage related settings 
+storage:

@@ -1,0 +1,93 @@
+- name: check status of a service and email if it's down
+  host: localhost
+  tasks:
+    - command: service http status
+      register: result
+
+    - mail:
+      to: admin@company.com
+      subject: service alert
+      body: Httpd service is down
+      when: result.stdout.find('down') != -1
+
+
+---
+# here we are creating user in a system using user modules in ansible
+
+-
+  name: Create user
+  hosts: localhost
+  tasks:
+    - user: name=joe state=present
+
+--- 
+
+# to create multiple users we can use a single module loop over the users 
+
+- 
+  name: Create users
+  host: localhost
+  task:
+  - user: name="{{item}}" state=present
+    loop:
+      - joe
+      - george
+      - ravi
+      - ramu
+      - rema 
+      - renju 
+      - remj
+      - rani 
+
+
+---
+
+# passing a dictionary
+## loop directive 
+
+  name: Create users
+  host: localhost
+  task:
+  - user: name="{{item.name}}" "{{ item.uid }}" state=present
+    loop:   # this loop directive is newly added before we use this 'with_item' directive.
+      - name: joe
+        uid: 1010
+      - name: george
+        uid: 1011
+      - name: ravi
+        uid: 1012
+      - name: ramu
+        uid: 1013
+      - name: rema 
+        uid: 1014
+      - name: renju 
+        uid: 1015
+      - name: remj
+        uid: 1016
+      - name: rani 
+        uid: 1017
+
+## with_items directive   often used in older playbooks
+
+---
+  name: Create users
+  host: localhost
+  task:
+  - user: name="{{item.name}}" "{{ item.uid }}" state=present
+    with_items:   
+      - name: joe
+        uid: 1010
+      - name: george
+        uid: 1011
+      - name: ravi
+        uid: 1012
+      - name: ramu
+        uid: 1013
+      - name: rema 
+        uid: 1014
+      - name: renju 
+        uid: 1015
+      - name: remj
+        uid: 1016
+      - name: rani 
+        uid: 1017

@@ -1,0 +1,17 @@
+# we can package this entair steps into a singe file called role and use it when ever we want
+
+- 
+  name: Install and configure MySQL
+  host: db-server
+  tasks:
+    - name: Installing Pre-requisites
+      yum: name=pre-req-packages state=present
+
+    - name: Install MySQL package
+      yum: name=mysql state=present
+
+    - name: Start MySQL Service
+      service: name=mysql state=started
+    
+    - name: configure Database
+      mysql_db: name=db1 state=present

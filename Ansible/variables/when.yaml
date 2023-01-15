@@ -1,0 +1,16 @@
+# using the when condition 
+- name: install Nginx
+  hosts: all
+  tasks: 
+    - name: install Nginx on Debian
+      apt:
+          name: nginx
+          state: present
+      when: ansible_os_family == "Debian"
+
+    -  name: install Nginx on Redhat
+       yum:
+          name: nginx
+          state: present
+       when: ansible_os_family == "RedHat"
+      
