@@ -1,0 +1,15 @@
+- host: databases
+  remote_user: root
+  tasks:
+    - name: rename table foo to bar 
+      postgresql_table:
+        table: foo
+        rename: bar
+    - name: set owner to some_user 
+      postgresql_tabes:
+        name: foo
+        owner: some_user
+    - name: Truncate table foo 
+      postgresql_table:
+        name: foo 
+        truncate: true

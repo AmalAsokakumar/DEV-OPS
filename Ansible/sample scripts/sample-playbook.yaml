@@ -1,0 +1,18 @@
+  hosts: webservers
+  remote_user: root
+
+  tasks:
+    - name: create a directory for nginx
+      file: 
+        path: /path/to/nginx/dir 
+        state: directory 
+    - name: install nginx latest version.
+      yum:
+        name: nginx
+        state: latest
+    - name: start nginx
+      services: 
+        name: nginx
+        state: started 
+- host:  # incomplete here we can add more tasks 
+

@@ -1,0 +1,13 @@
+task:
+  - name: create dictonary for nginx 
+    file:
+      path: /path/to/nginx/dir 
+      state: directory 
+  - name : install nginx latest version
+    yum: 
+      name: nginx 
+      state: latest
+  - name: start nginx 
+    service: 
+      name: nginx
+      state: started
