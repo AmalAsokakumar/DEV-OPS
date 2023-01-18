@@ -8,8 +8,8 @@ variable "vpc_cidr_block" {
 variable "subnet_cidr_blocks" {
   type = list(object({
     cidr_block = string
-    name = string
-    az = string
+    name       = string
+    az         = string
   }))
 }
 variable "avail_zone" {

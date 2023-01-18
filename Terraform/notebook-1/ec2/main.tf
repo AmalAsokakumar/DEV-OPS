@@ -10,20 +10,20 @@ resource "aws_vpc" "demo-vpc" {
 }
 # create a subnet for the vpc.
 resource "aws_subnet" "public-subnet" {
-  vpc_id            = aws_vpc.demo-vpc.id
-  cidr_block        = var.subnet_cidr_blocks[0].cidr_block
-  availability_zone = var.subnet_cidr_blocks[0].az
+  vpc_id                  = aws_vpc.demo-vpc.id
+  cidr_block              = var.subnet_cidr_blocks[0].cidr_block
+  availability_zone       = var.subnet_cidr_blocks[0].az
   map_public_ip_on_launch = true
   tags = {
     Name = "${var.env_prefix}-${var.subnet_cidr_blocks[0].name}-subnet"
   }
 }
 # creating a private subnet
-resource "aws_subnet" "private-subnet"{
-  vpc_id = aws_vpc.demo-vpc.id
-  cidr_block = var.subnet_cidr_blocks[1].cidr_block
-  availability_zone = var.subnet_cidr_blocks[1].az
-   map_public_ip_on_launch = false
+resource "aws_subnet" "private-subnet" {
+  vpc_id                  = aws_vpc.demo-vpc.id
+  cidr_block              = var.subnet_cidr_blocks[1].cidr_block
+  availability_zone       = var.subnet_cidr_blocks[1].az
+  map_public_ip_on_launch = false
   tags = {
     Name = "${var.env_prefix}-${var.subnet_cidr_blocks[1].name}-subnet"
   }
@@ -51,7 +51,7 @@ resource "aws_route_table_association" "demo-route-table-association-with-subnet
 # configure the security group
 resource "aws_security_group" "security-group" {
   vpc_id = aws_vpc.demo-vpc.id
-  name = "${var.env_prefix}-my-security-group"
+  name   = "${var.env_prefix}-my-security-group"
   # ingress for incomming 
   ingress {
     from_port   = 22 # to open a range of ports, here we are opening only one port.
@@ -133,6 +133,36 @@ resource "aws_instance" "my-app-ec2" {
   associate_public_ip_address = true
   key_name                    = "terraform"
   tags = {
-    Name = "Dev Server"
+    Name = "Dev Server on public subnet"
   }
 }
+# creating private instance for private instance.
+resource "aws_eip" "for-private-instance" {}
+# instance on private subnet 
+resource "aws_instance" "instance-on-private-subnet" {
+  ami           = data.aws_ami.latest-amazon-linux-image.id
+  instance_type = var.instance_type
+  subnet_id     = aws_subnet.private-subnet.id
+  # vpc_security_group_ids      = [aws_security_group.security-group.id, ]
+  vpc_security_group_ids      = [aws_default_security_group.my-sg.id]
+  availability_zone           = "us-east-1a"
+  associate_public_ip_address = true
+  key_name                    = "terraform"
+  tags = {
+    Name = "Dev Server on private subnet"
+  }
+}
+# associating public ip to the instance.
+resource "aws_eip_association" "private" {
+  public_ip   = aws_eip.for-private-instance.public_ip
+  instance_id = aws_instance.instance-on-private-subnet.id
+}
+# resource "aws_network_interface" "nif" {
+#   subnet_id       = aws_subnet.private-subnet.id
+#   security_groups = [aws_default_security_group.my-sg.id]
+# }
+# resource "aws_network_interface_attachment" "private" {
+#   device_index         = 0
+#   network_interface_id = aws_network_interface.nif.id
+#   instance_id          = aws_instance.instance-on-private-subnet.id
+# }
