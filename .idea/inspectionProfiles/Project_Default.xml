@@ -1,0 +1,25 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyPep8NamingInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="N806" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="ecommerce.store.models.Brand.objects" />
+          <option value="ecommerce.settings" />
+          <option value="ecommerce.store.models.CartItem.objects" />
+          <option value="ecommerce.store.models.Cart.objects" />
+          <option value="ecommerce.store.models.Product.objects" />
+          <option value="ecommerce.store.models.Category.objects" />
+          <option value="ecommerce.accounts.views.*" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

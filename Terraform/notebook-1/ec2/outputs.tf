@@ -7,7 +7,7 @@ output "ami" {
 output "ec2-public-subnet" {
   value = aws_instance.my-app-ec2.public_ip
 }
-output "key-name" {
+output "public-key-name" {
   value = aws_instance.my-app-ec2.key_name
 }
 output "key-name" {
@@ -16,7 +16,7 @@ output "key-name" {
 output "ec2-private-subnet" {
     value = aws_instance.instance-on-private-subnet.public_ip
 }
-output "key-name" {
+output "private-key-name" {
   value = aws_instance.instance-on-private-subnet.key_name
 }
 
