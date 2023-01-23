@@ -2,5 +2,19 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/argocd" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/argocd/argo-demo" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/argocd/argo-events-demo" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/argocd/argo-test" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/aws/aws_secrets/keys" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/golang/helloworld" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/istio/microservices-demo" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/istio/test-demo/istio-fleetman" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/kibana/complete-guide-to-elasticsearch" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/kibana/data-visualization-with-kibana" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/kube/CICD_Java_gradle_application" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/kube/microservices-demo" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/kube/microservices/anna_helm_1" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/kube/week18/java-microservice-helm-example" vcs="Git" />
   </component>
 </project>

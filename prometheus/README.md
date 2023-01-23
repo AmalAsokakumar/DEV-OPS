@@ -1,3 +1,22 @@
+# Prometheus
+
+- Prometheus is an `open-source` `monitoring and alerting system` for monitoring `time-series data`. It is designed for monitoring and alerting on various metrics and events in a distributed environment.
+
+- Prometheus is widely used for monitoring and alerting on the performance of systems, applications, and services. It can be used to monitor various metrics such as CPU usage, memory usage, and network traffic. Prometheus also allows users to create custom metrics and alerts based on the metrics they collect.
+
+- One of the key features of Prometheus is its ability to scrape metrics from various targets, such as servers, containers, and services. Prometheus uses a pull-based model for collecting metrics, where the Prometheus server periodically scrapes metrics from the targets it monitors. This allows for a high degree of flexibility and scalability, as Prometheus can easily be configured to monitor thousands of targets.
+
+- Prometheus also includes a powerful query language, PromQL, which allows users to perform complex queries on the metrics they collect. This allows users to create custom dashboards and alerts based on the metrics they collect.
+
+- Prometheus also includes a built-in alerting system, which allows users to define custom alerts based on the metrics they collect. Alerts can be configured to send notifications to various destinations, such as email, Slack, or PagerDuty.
+
+- Prometheus is often used in combination with other open-source tools, such as Grafana, for visualizing and analyzing the metrics it collects. Grafana allows users to create custom dashboards and alerts based on the metrics collected by Prometheus.
+
+- Prometheus is also integrated with Kubernetes as part of the Kubernetes monitoring stack. This allows users to easily monitor the performance of their Kubernetes clusters and the applications running on them.
+
+- In summary, Prometheus is a powerful open-source monitoring and alerting system that can be used to monitor and alert on various metrics and events in a distributed environment. It is widely used for monitoring and alerting on the performance of systems, applications, and services, and it can be integrated with Kubernetes and other open-source tools such as Grafana for visualizing and analyzing the metrics it collects.
+
+
 # Install prometheus 
 ```
 # add prometheus kubernetes stack int o helm repo 
