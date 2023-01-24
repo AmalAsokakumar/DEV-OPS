@@ -1,0 +1,33 @@
+-
+  name: installing packages for nodejs app deployment
+  host: node
+  become : true
+  tasks:
+
+  - name: Update all packages to the latest version
+    apt:
+        upgrade: dist
+
+  - name: Upgrade all packages to the latest version
+    apt:
+        name: "*"
+        state: latest
+
+  - name: Install and configure Nginx, MongoDB, npm, and Node.js
+    apt:
+        name: "{item}"
+        state: present
+        update_cache: yes
+        loop: 
+          - nginx
+          - npm
+          - nodejs
+          - mongodb
+          
+  - name: Configure Nginx
+  copy:
+    src: nginx.conf
+    dest: /etc/nginx/nginx.conf
+    owner: root
+    group: root
+    mode: 0644
