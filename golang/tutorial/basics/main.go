@@ -50,23 +50,40 @@
 
 ////////////////////////////////////////////////////////////////
 
+// package main
+
+// import (
+// 	"fmt"
+// 	"reflect"
+// )
+
+// func main() {
+// 	fmt.Println("please enter your name ")
+// 	var name string
+// 	fmt.Scanf("%s",&name) // similar to c programming.
+// 	fmt.Printf(" %s is really your name \n", name)
+// 	fmt.Printf("it is stored in this %v location.\n",&name) // memory location of the variable
+// 	var var1, var2 string
+// 	fmt.Printf("enter 2 values ")
+// 	fmt.Scanf("%s %s",&var1, &var2)
+// 	fmt.Println("the variable name is type of ",reflect.TypeOf(name))
+// 	fmt.Println("the variable var is type of : ",reflect.TypeOf(name).Kind())
+// 	fmt.Printf("the type of variable 'name' : %T \n", name)
+// }
+
 package main
 
 import (
 	"fmt"
 	"reflect"
+	"strconv"
 )
-
 func main() {
-	fmt.Println("please enter your name ")
-	var name string
-	fmt.Scanf("%s",&name) // similar to c programming.
-	fmt.Printf(" %s is really your name \n", name)
-	fmt.Printf("it is stored in this %v location.\n",&name) // memory location of the variable
-	var var1, var2 string
-	fmt.Printf("enter 2 values ")
-	fmt.Scanf("%s %s",&var1, &var2)
-	fmt.Println("the variable name is type of ",reflect.TypeOf(name))
-	fmt.Println("the variable var is type of : ",reflect.TypeOf(name).Kind())
-	fmt.Printf("the type of variable 'name' : %T \n", name)
+	var s string = "200"
+	fmt.Println("printing s ",s)
+	fmt.Println("the type of s is ", reflect.TypeOf(s))
+	i, err := strconv.Atoi(s)
+	fmt.Println("the type of i is ", reflect.TypeOf(i))
+	fmt.Println("printing i ",i)
+	fmt.Println("the error is ", err)
 }

@@ -13,7 +13,7 @@
 # <span style="color:teal">GO </span>
 
 1. [introduction](#introduction )
-2. [Variables, Data types, Assignment](#variables)
+2. [Variables, Data types, Assignment](#variables) 
 3. [print variables](#print_variables)
 4. [Format specifiers](#format_specifiers)
 5. [Scope of variables](#scope_of_variables)
@@ -153,6 +153,29 @@ One of these is using the <span style="color:green"> </span>`"const"` keyword to
 ```
 const pi = 3.14
 ```
+In Go (Golang), there are three types of constants:
+
+- Numeric constants: These are constants that represent a numeric value, such as integers, floating-point numbers, and complex numbers.
+- Boolean constants: These are constants that can only be true or false.
+- String constants: These are constants that represent a sequence of characters.
+
+All three types of constants can be used in any context where a value of their respective type is allowed. They are created using the keyword const and are immutable, meaning their value cannot be changed once assigned.
+``
+In addition to these three types, Go also has `untyped constants`. They are constants that do `not` have an `explicit type` and can be used in any context where a value of any type is allowed. They are created in the same way as typed constants, but without the explicit type.
+
+For example:
+
+```
+const pi = 3.14
+const message = "Hello, world!"
+const isTrue = true
+```
+
+In Go, constants are often used to define values that will not change during the execution of a program, such as mathematical constants, or to make code more readable by giving a name to a hardcoded value.
+
+
+
+
 You can also use the <span style="color:green"> </span>"&" operator to get the <span style="color:green"> </span>memory address of a variable:
 
 ```
