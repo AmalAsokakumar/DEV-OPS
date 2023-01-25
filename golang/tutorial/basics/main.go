@@ -71,19 +71,34 @@
 // 	fmt.Printf("the type of variable 'name' : %T \n", name)
 // }
 
-package main
+// package main
 
-import (
-	"fmt"
-	"reflect"
-	"strconv"
-)
+// import (
+// 	"fmt"
+// 	"reflect"
+// 	"strconv"
+// )
+// func main() {
+// 	var s string = "200"
+// 	fmt.Println("printing s ",s)
+// 	fmt.Println("the type of s is ", reflect.TypeOf(s))
+// 	i, err := strconv.Atoi(s)
+// 	fmt.Println("the type of i is ", reflect.TypeOf(i))
+// 	fmt.Println("printing i ",i)
+// 	fmt.Println("the error is ", err)
+// }
+
+package main 
+
+import "fmt"
+
 func main() {
-	var s string = "200"
-	fmt.Println("printing s ",s)
-	fmt.Println("the type of s is ", reflect.TypeOf(s))
-	i, err := strconv.Atoi(s)
-	fmt.Println("the type of i is ", reflect.TypeOf(i))
-	fmt.Println("printing i ",i)
-	fmt.Println("the error is ", err)
+	a := 10 //binary 10 -> 1010
+	b := 2 
+	r := a >> b // move the 2 position to right
+	l := a << b // move the 2 position to left
+	fmt.Println("here are the shifted results ")
+	fmt.Printf("%v is the right shifted result \n", r)
+	fmt.Printf("%v is the left shifted result\n", l)
+
 }

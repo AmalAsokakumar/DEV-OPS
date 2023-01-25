@@ -21,6 +21,8 @@
 7. [User input](#user_input)
 8. [Find variable type](#find_the_variable_type_)
 9. [Converting data types, strconv](#convert_data_types)
+10. [Operator](#operator)
+11. [Control flow, if, ifelse, switch, loop](#control_flow)
 
 
 ## introduction 
@@ -52,6 +54,7 @@ This command will run the <span style="color:green">main </span>  function in th
 3. <span style="color:gold">boolean </span>
 4. <span style="color:gold"> array</span>
 5. <span style="color:gold">map </span>
+
 
 
 
@@ -897,3 +900,77 @@ In general, the "strconv" package is a powerful tool for working with strings an
 
 
 
+
+## operator
+
+In Go, operators are special symbols that perform specific operations on one or more operands (values or variables). Some examples of Go operators include:
+
+- Arithmetic operators (e.g. +, -, *, /, %)
+- Comparison operators (e.g. ==, !=, <, >, <=, >=)
+- Logical operators (e.g. &&, ||, !)
+    - ! is a urinary operator, which works with a single operand
+- Assignment operators (e.g. =, +=, -=, *=, /=)
+- Bitwise operators  and increment and decrement operator (++ and --)
+For example:
+
+```
+package main
+
+import "fmt"
+
+func main() {
+    a := 10
+    b := 3
+    c := a + b
+    fmt.Println("a + b =", c)
+    c = a - b
+    fmt.Println("a - b =", c)
+    c = a * b
+    fmt.Println("a * b =", c)
+    c = a / b
+    fmt.Println("a / b =", c)
+    c = a % b
+    fmt.Println("a % b =", c)
+}
+```
+
+In this example, the arithmetic operators +, -, *, /, and % are used to perform addition, subtraction, multiplication, division, and modulus operations, respectively. The result of each operation is then assigned to the variable c using the assignment operator = and printed to the console using the fmt.Println function.
+
+###### Bitwise operators
+Bitwise operators are a type of operator in Go that perform operations on the individual bits of an operand. They include:
+
+- Bitwise AND (&)
+- Bitwise OR (|)
+- Bitwise XOR (^) //`1` if the two bits are opposite 
+- Bitwise NOT (~)
+- Left shift (<<) 
+- Right shift (>>)
+For example:
+
+```
+package main
+
+import "fmt"
+
+func main() {
+    a := 10  // 1010 in binary
+    b := 3   // 0011 in binary
+    c := a & b
+    fmt.Println("a & b =", c)
+    c = a | b
+    fmt.Println("a | b =", c)
+    c = a ^ b
+    fmt.Println("a ^ b =", c)
+    c = a << 1
+    fmt.Println(c)//
+}
+```
+
+In this example, the bitwise AND (&) operator compares each bit of the first operand (a) to the corresponding bit of the second operand (b) and returns 1 if both bits are 1, otherwise it returns 0. Similarly, the bitwise OR (|) operator returns 1 if either of the bits is 1, while the bitwise XOR (^) operator returns 1 if the bits are different. The bitwise NOT (~) operator inverts all the bits of its operand.
+
+The left shift operator (​3
+Malformed citation <<) moves all the bits in the operand to the left by the number of positions specified by the second operand, adding zeroes on the right. The right shift operator (>>
+​) moves all the bits in the operand to the right by the number of positions specified by the second operand, adding sign bits on the left.
+
+
+## control_flow
