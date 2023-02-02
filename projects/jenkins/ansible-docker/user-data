@@ -1,0 +1,33 @@
+#!/bin/bash
+# updating the ami
+sudo yum update -y
+# adding jenkins repo
+sudo wget -O /etc/yum.repos.d/jenkins.repo \
+    https://pkg.jenkins.io/redhat-stable/jenkins.repo
+# importing key 
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+sudo yum upgrade -y
+# installing java 
+sudo amazon-linux-extras install java-openjdk11 -y
+# Install Jenkins:
+sudo yum install jenkins -y
+# starting and enabling jenkins 
+sudo systemctl start jenkins && sudo systemctl enable jenkins 
+
+
+
+# to install ansible in the machine 
+sudo amazon-linux-extras install ansible2 -y
+
+
+
+# insalling docker in the instance 
+yum install docker -y 
+# adding jenkins to the docker group to execute the command for jenkins.
+sudo usermod -aG docker jenkins
+# restart jenkins service to make this change reflect there 
+sudo service jenkins restart 
+# This command is used to enable the Docker service to start automatically on boot 
+sudo chkconfig docker on 
+# starting docker 
+sudo service docker start

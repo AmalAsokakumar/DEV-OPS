@@ -88,17 +88,127 @@
 // 	fmt.Println("the error is ", err)
 // }
 
-package main 
+// package main
 
-import "fmt"
+// import "fmt"
 
-func main() {
-	a := 10 //binary 10 -> 1010
-	b := 2 
-	r := a >> b // move the 2 position to right
-	l := a << b // move the 2 position to left
-	fmt.Println("here are the shifted results ")
-	fmt.Printf("%v is the right shifted result \n", r)
-	fmt.Printf("%v is the left shifted result\n", l)
+// func main() {
+// 	a := 10 //binary 10 -> 1010
+// 	b := 2
+// 	r := a >> b // move the 2 position to right
+// 	l := a << b // move the 2 position to left
+// 	fmt.Println("here are the shifted results ")
+// 	fmt.Printf("%v is the right shifted result \n", r)
+// 	fmt.Printf("%v is the left shifted result\n", l)
 
+// }
+
+// package main
+
+// import "fmt"
+
+// func main() {
+// 	var str string = "hello"
+// 	var str_1 string;
+// 	var str_2 string;
+// 	fmt.Printf("enter a string \t")
+// 	fmt.Scanf("%s", &str_1)
+// 	if (str == str_1) {
+// 		fmt.Println("the entered string match ")
+// 	}
+// 	fmt.Printf("what is his favorite game ")
+// 	fmt.Scanf("%s", &str_2)
+// 	if str_2 != "football" {
+// 		fmt.Printf("%v is not his favorite game \n", str_2)
+// 	} else {
+// 		fmt.Printf("%v is his favorite game",str_2)
+// 	}
+// }
+
+////////////////////////////////////////////////////////////////
+// switch case
+
+// package main
+
+// import "fmt"
+
+// func main() {
+// 	var i int = 20
+// 	switch i {
+// 		case 100:
+// 			fmt.Println("i is 100")
+// 		case 200, 300:
+// 			fmt.Println("i is either 200 or 300")
+// 		default:
+// 			fmt.Println("i is neither 0, 100 or 300")
+
+// 	}
+// }
+
+// swithch fall through
+
+// package main
+
+// import "fmt"
+
+// func main ()  {
+// 	var i int = 10
+// 	switch i {
+// 		case -5:
+// 			fmt.Println("-5")
+// 		case 10:
+// 			fmt.Println("10")
+// 			fallthrough
+// 		case 20:
+// 			fmt.Println("20")
+// 			fallthrough
+// 		default:
+// 			fmt.Println("default")
+// 	}
+
+// }
+
+////////////////////////////////////////////////////////////////
+
+// loop for loop 
+
+// package main //
+
+// import "fmt"
+// func main() {
+// 	fmt.Println("Now printing the squares")
+// 	for i :=0; i <=3; i++ {
+// 		fmt.Println(i*i)
+// 	}
+// 	fmt.Println("Now printing the cubes")
+// 	var i int = 1
+// 	for i <= 5 {
+// 		fmt.Println(i*i*i)
+// 		i += 1
+// 	}
+// }
+
+// break and continue 
+// [package main //
+
+// import "fmt"
+// func main() {
+// 	fmt.Println("Now printing the squares")
+// 	for i :=0; i <=3; i++ {
+// 		fmt.Println(i*i)
+// 	}
+// 	fmt.Println("Now printing the cubes")
+// 	var i int = 1
+// 	for i <= 5 {
+// 		if i == 4 {
+// 			fmt.Println("i")
+// 			break
+// 		} else if i == 2 {
+// 			continue
+// 		}else{
+// 			fmt.Println(i*i*i)
+// 		}
+// 		i += 1
+// 	}]
 }
+
