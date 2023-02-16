@@ -1,6 +1,6 @@
 #!/usr/bin/bash 
 
-sed -i 's/\[]/\["54.144.250.113"]/' /home/ubuntu/blogprojectdrf/blog/settings.py
+sed -i 's/\[]/\["35.166.194.254 "]/' /home/ubuntu/DEV_OPS/AWS/CICD/Project-2/blog/settings.py # public ip of hosting server
 
 python manage.py migrate 
 python manage.py makemigrations     

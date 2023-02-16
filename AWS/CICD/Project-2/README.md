@@ -1,4 +1,4 @@
-# To deploy django based application. 
+# To deploy django based application using AWS `CI-CD`
 ## building a cicd pipeline on aws for django
 
 it has to following these steps. 
@@ -75,3 +75,145 @@ Launch an instance
         # to check if the agent is running 
         sudo service codedeploy-agent status 
 ```
+
+## 3. Setting up <span style="color:olive" >Django application and Scripts </span> 
+
+
+1. <span style="color:teal"> Gunicon config </span>
+
+    `gunicorn.service`
+
+    ```    
+    [Unit]
+    Description=gunicorn daemon
+    Requires=gunicorn.socket
+    After=network.target
+    [Service]
+    User=ubuntu
+    Group=www-data
+    WorkingDirectory=/home/ubuntu/aws-cicd
+    ExecStart=/home/ubuntu/env/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/ubuntu/aws-cicd/blog/blog.sock blog.wsgi:application
+
+        
+    [Install]
+    WantedBy=multi-user.target
+
+    ```
+    <br><br>
+
+    `gunicorn.socket`
+
+    ```
+    [Unit]
+    Description=gunicorn socket
+    [Socket]
+    ListenStream=/run/gunicorn.sock
+    [Install]
+    WantedBy=sockets.target
+
+    ```
+
+1. <span style="color:teal"> Nginx config </span>
+
+    `nginx.conf`
+
+    ```
+        server {
+        listen 80 default_server;
+        server_name 35.166.194.254;
+        location = /favicon.ico { access_log off; log_not_found off; }
+        location /staticfiles/ {
+            root /home/ubuntu/aws-cicd;
+        }
+        location / {
+            include proxy_params;
+            proxy_pass http://unix:/run/gunicorn.sock;
+        }
+    }
+    ```
+
+1. <span style="color:teal"> appspec.yaml </span> 
+
+    `appspec.yml`
+
+    ```
+    version: 0.0
+    os: linux
+    files: 
+    - source: /
+        destination: /home/ubuntu/aws-cicd
+    permissions:
+    - object: /home/ubuntu/aws-cicd
+        owner: ubuntu
+        group: ubuntu
+    hooks:
+    BeforeInstall:
+        - location: scripts/clean_instance.sh
+            timeout: 300
+            runas: ubuntu
+    AfterInstall:
+        - location: scripts/instance_os_dependencies.sh
+            timeout: 300
+            runas: ubuntu
+        - location: scripts/python_dependencies.sh
+            timeout: 300
+            runas: ubuntu
+        - location: scripts/gunicorn.sh
+            timeout: 300
+            runas: ubuntu
+        - location: scripts/nginx.sh
+            timeout: 300
+            runas: ubuntu
+    ApplicationStop:
+        - location: scripts/stop_app.sh
+            timeout: 300
+            runas: ubuntu
+    ApplicationStart:
+        - location: scripts/start_app.sh
+            timeout: 300
+            runas: ubuntu
+
+    ```
+1. <span style="color:teal"> buildspec.yaml </span>
+
+    `buildspec.yml`
+
+    ```
+    version: 0.1
+
+    # environment_variables:
+    # plaintext:
+    #   DJANGO_SETTINGS_MODULE: config.settings.test
+    #   SECRET_KEY: nosecret
+    #   DATABASE_DEFAULT_URL: sqlite:///db1.sqlite3
+    #   DATABASE_STREAMDATA_URL: sqlite:///db2.sqlite3
+    #   STREAM_INCOMING_PRIVATE_KEY: changeme
+    #   STREAM_INCOMING_PUBLIC_KEY: changeme
+    #   GOOGLE_API_KEY: changeme
+    #   OPBEAT_ENABLED: False
+
+    phases:
+    pre_build:
+        commands:
+        - echo Prebuild ops
+        - pip3 install -r requirements.txt
+    build:
+        commands:
+        - echo Building the application 
+    post_build:
+        commands:
+        - echo Build completed on `date`
+    artifacts:
+    files:
+        - '**/*'
+
+    ```
+1. <span style="color:teal"> Scripts </span>
+    1. <span style="color:teal"> nginx </span>
+    1. <span style="color:teal"> Gunicon </span>
+    1. <span style="color:teal"> python dependencies </span>
+    1. <span style="color:teal"> startup </span>
+    1. <span style="color:teal"> Clean instance </span>
+    1. <span style="color:teal"> Stop</span>
+    
+## 4. Creating <span style="color:olive" >CodePipeline </span> 

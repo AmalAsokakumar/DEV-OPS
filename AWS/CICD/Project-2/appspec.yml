@@ -2,9 +2,9 @@ version: 0.0
 os: linux
 files: 
   - source: /
-    destination: /home/ubuntu/blogprojectdrf
+    destination: /home/ubuntu/DEV_OPS/AWS/CICD/Project-2
 permissions:
-  - object: /home/ubuntu/blogprojectdrf
+  - object: /home/ubuntu/DEV_OPS/AWS/CICD/Project-2
     owner: ubuntu
     group: ubuntu
 hooks:

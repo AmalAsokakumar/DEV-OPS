@@ -18,10 +18,10 @@ phases:
       - pip3 install -r requirements.txt
   build:
     commands:
-      - echo Building the application 
+      - echo Building the application  # there is nothing to build on django ?
   post_build:
     commands:
-      - echo Build completed on `date`
+      - echo Build completed on `date` # same for the post build 
 artifacts:
   files:
-    - '**/*'
+    - '**/*'   # here it is copying everything 
