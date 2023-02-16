@@ -216,4 +216,75 @@ Launch an instance
     1. <span style="color:teal"> Clean instance </span>
     1. <span style="color:teal"> Stop</span>
     
-## 4. Creating <span style="color:olive" >CodePipeline </span> 
+## 4. <span style="color:olive" >Code Build </span> 
+
+```
+CodeBuild
+    - Developer Tools -> CodeBuild -> Build projects -> Create build project
+        - project name -> Django-project-build
+            - other setting -> default
+        - Source -> GitHUb
+            - generate a Git personal access token for AWS.
+            - provide GitHub repo url where these codes lie [eg]("https://github.com/AmalAsokakumar/aws-cicd.git")
+        - Environment
+            - Environment image -> managed Image
+            - Operating system -> Ubuntu
+            - Runtime(s) -> standard
+            - Image ->  aws/codebuild/standard:6.0 (latest)
+            default
+        - Service role
+            - new service role 
+        - BuildSpecs
+            - Use a BuildSpecFile # don't need to provide a path it will automatically detect.
+        - Artifacts 
+            - Type -> NoArtifacts 
+        - Logs 
+            - CloudWatch -> enabled 
+
+    create build project now 
+
+```
+
+## 4. Creating <span style="color:olive" >CodePipeline Application  </span>  which will handle the cicd aspect of the job
+
+```
+Developer Tools -> CodeDeploy -> Applications
+    - Create Applications
+        - Application name -> django_application
+        - Compute platform -> ec2/on-premise
+    - Crate Deployment groups
+        - Deployment group name - > djang-project-group
+        - Service role ->  aws-codedeploy-role # select the role that we created at the beginning of the this deployment 
+        - Deployment Type -> in-place
+        - Environment configuration -> Amazon EC2 instances.
+            - Tag group
+                key ->  Name -> Django server
+        default
+        - Deployment settings -> CodeDeployDefault.AllAtOnce
+        - Load balancing -> disabled.
+```
+
+## 4. Creating a <span style="color:olive" >Pipeline </span>  
+
+```
+Developer Tools -> CodePipeline -> Pipelines -> Create new pipeline
+    - Pipeline Name -> Django_project_pipeline_
+    - Service role -> New service role
+
+    - Advanced settings -> 
+        Artifact store -> default location.
+        Encryption Key -> Default aws Managed key.
+
+    Add source stage
+        - Source -> Source provider -> github(Version 1)
+            - connect with git hub, provide repo name, branch name 
+        - Change detection options -> gitWebhooks. 
+    Add build stage
+        - build -> Build provider - AWS code build
+            - provide region, project name, default 
+    Add deploy stage
+        Deploy - optional -> deploy provider -> AWSCodeDeploy
+            - region, application name, deployment group needed to be provided.
+            
+create pipeline       
+```
