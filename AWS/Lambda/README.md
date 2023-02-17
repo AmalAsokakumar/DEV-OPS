@@ -22,7 +22,8 @@ To get started with Lambda, you'll need an AWS account. Once you have an account
 ## Projects
 
 1. [planet](https://github.com/AmalAsokakumar/dev-ops/tree/main/AWS/Lambda/planet) <br> 
-1. [Time Based Locator]()
+1. [Time Based Locator](https://github.com/AmalAsokakumar/dev-ops/tree/main/AWS/Lambda/Time%20Based%20Locator)
+1. [Insert json file into s3 bucket](https://github.com/AmalAsokakumar/dev-ops/tree/main/AWS/Lambda/insert%20json%20file%20into%20s3%20with%20lambda%20)
 
 ## Here are some resources to help you get started:
 
