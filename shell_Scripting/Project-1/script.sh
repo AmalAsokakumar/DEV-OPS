@@ -9,5 +9,15 @@ echo "${PASSWORD}"
 PASSWORD=$(date +%s)
 echo "${PASSWORD}"
 # including nanosecon at the time of password creation
-PASSWORD=$(date +%s%N)
+PASSWORD=$(date +%s%N) 
 echo "${PASSWORD}"
+# shaing the the date since the epice 
+PASSWORD=$(date +%s | sha256sum)
+echo "${PASSWORD}"
+# to print first 32 character 
+PASSWORD=$(date +%s | sha256sum | head -c32)
+echo "${PASSWORD}"
+# to create an even better password with a length of 48 character 
+PASSWORD=$(date +%s%N${RANDOM}${RANDOM} | sha256sum | head -c48) 
+echo "${PASSWORD}"
+

@@ -4,11 +4,11 @@
 it has to following these steps. 
 - iam creation 
 - aws account creation 
-- ec2 instance creation 
-- code deploy installation 
-- code structure 
-- configuration files 
-- code pipeline 
+- create an ec2 instance 
+- installation code deploy 
+- Structure the code (django)
+- create configuration files 
+- setup codebuild, codedeploy, codepipeline 
 - test project on live server 
 
 
