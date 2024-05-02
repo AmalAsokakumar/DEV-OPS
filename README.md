@@ -1,7 +1,7 @@
 
 
 
-# DevOps
+# <h1 aligh=center> DevOps </h1>
 
 DevOps is a software development approach that emphasizes collaboration, communication, and automation between development and operations teams. The goal of DevOps is to streamline the software development process, from planning to deployment, and to improve the speed and quality of software delivery.
 
